@@ -41,6 +41,8 @@ fi
 set +e
 OUTPUT=$(sh -c "terraform init -no-color -input=false $*; TF_IN_AUTOMATION=true terraform plan -no-color -input=false $*" 2>&1)
 SUCCESS=$?
+echo "$HOME"
+echo "$PWD"
 echo "$OUTPUT"
 set -e
 

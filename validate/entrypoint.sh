@@ -10,6 +10,8 @@ set +e
 OUTPUT=$(sh -c "terraform init -no-color -input=false $*; terraform validate -no-color $*" 2>&1)
 SUCCESS=$?
 echo "$OUTPUT"
+echo "$HOME"
+echo "$PWD"
 set -e
 
 if [ $SUCCESS -eq 0 ]; then
