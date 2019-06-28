@@ -1,4 +1,4 @@
-FROM hashicorp/terraform:0.12.2
+FROM keiichihikita/terraform-ecl:latest
 
 LABEL "com.github.actions.name"="terraform plan"
 LABEL "com.github.actions.description"="Run terraform plan"
