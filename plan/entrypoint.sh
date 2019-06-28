@@ -37,7 +37,7 @@ fi
 set +e
 PLUGINS_DIR="$HOME/.terraform.d/plugins/linux_amd64"
 mkdir -p $PLUGINS_DIR
-mv /terraform-provider-ecl $PLUGINS_DIR
+cp -f /terraform-provider-ecl $PLUGINS_DIR
 set -e
 
 
