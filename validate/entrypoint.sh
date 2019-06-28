@@ -7,7 +7,7 @@ if [[ ! -z "$TF_ACTION_WORKSPACE" ]] && [[ "$TF_ACTION_WORKSPACE" != "default" ]
 fi
 
 set +e
-OUTPUT=$(sh -c "terraform validate -no-color $*" 2>&1)
+OUTPUT=$(sh -c "terraform init -no-color -input=false $*; terraform validate -no-color $*" 2>&1)
 SUCCESS=$?
 echo "$OUTPUT"
 set -e
