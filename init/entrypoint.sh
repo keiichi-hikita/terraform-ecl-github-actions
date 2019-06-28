@@ -3,6 +3,8 @@ set -e
 cd "${TF_ACTION_WORKING_DIR:-.}"
 
 if [[ ! -z "$TF_ACTION_TFE_TOKEN" ]]; then
+  cd ~
+  pwd
   cat > ~/.terraformrc << EOF
 credentials "${TF_ACTION_TFE_HOSTNAME:-app.terraform.io}" {
   token = "$TF_ACTION_TFE_TOKEN"
