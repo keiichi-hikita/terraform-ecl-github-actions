@@ -39,6 +39,12 @@ if [[ ! -z "$TF_ACTION_WORKSPACE" ]] && [[ "$TF_ACTION_WORKSPACE" != "default" ]
 fi
 
 set +e
+PLUGINS_DIR="$HOME/.terraform.d/plugins/linux_amd64"
+mkdir -p $PLUGINS_DIR
+mv /terraform-provider-ecl $PLUGINS_DIR
+set -e
+
+set +e
 OUTPUT=$(sh -c "TF_IN_AUTOMATION=true terraform apply -no-color -auto-approve -input=false $*" 2>&1)
 SUCCESS=$?
 echo "$OUTPUT"

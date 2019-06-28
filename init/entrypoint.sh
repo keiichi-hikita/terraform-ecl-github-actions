@@ -13,6 +13,12 @@ EOF
 fi
 
 set +e
+PLUGINS_DIR="$HOME/.terraform.d/plugins/linux_amd64"
+mkdir -p $PLUGINS_DIR
+mv /terraform-provider-ecl $PLUGINS_DIR
+set -e
+
+set +e
 export TF_APPEND_USER_AGENT="terraform-github-actions/1.0"
 OUTPUT=$(sh -c "terraform init -no-color -input=false $*" 2>&1)
 SUCCESS=$?

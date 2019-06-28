@@ -34,15 +34,24 @@ credentials "${TF_ACTION_TFE_HOSTNAME:-app.terraform.io}" {
 EOF
 fi
 
+set +e
+PLUGINS_DIR="$HOME/.terraform.d/plugins/linux_amd64"
+mkdir -p $PLUGINS_DIR
+mv /terraform-provider-ecl $PLUGINS_DIR
+set -e
+
+
 if [[ ! -z "$TF_ACTION_WORKSPACE" ]] && [[ "$TF_ACTION_WORKSPACE" != "default" ]]; then
   terraform workspace select "$TF_ACTION_WORKSPACE"
 fi
 
+PLUGINS_DIR=$HOME/.terraform.d/plugins/linux_amd64
+mkdir -p $PLUGINS_DIR
+cp /terraform-provider-ecl $PLUGINS_DIR
+
 set +e
 OUTPUT=$(sh -c "terraform init -no-color -input=false $*; TF_IN_AUTOMATION=true terraform plan -no-color -input=false $*" 2>&1)
 SUCCESS=$?
-echo "$HOME"
-echo "$PWD"
 echo "$OUTPUT"
 set -e
 
